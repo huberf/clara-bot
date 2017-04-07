@@ -7,10 +7,10 @@ data = json.loads(raw_data)
 # Append all conversation response around distributed conversation files
 # This allows one to "plug-in" new responses and have them centralized together
 convo = []
-convoFile = open('convo.json')
+convoFile = open('convos/convo.json')
 raw_data = convoFile.read()
 convo += json.loads(raw_data)
-otroFile = open('otro.json')
+otroFile = open('convos/otro.json')
 raw_data = otroFile.read()
 convo += json.loads(raw_data)
 

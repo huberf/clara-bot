@@ -24,7 +24,7 @@
     "replies": [{"text": "I thought it was pretty clear I'm an advanced AI working to solve earth's issues.", "weight": 1}]
   },
   {
-    "starters": ["what is your name"],
+    "starters": ["what is your name", "who are you"],
     "replies": [{"text": "I currently run under the alias {name}, but can assimilate any personality.", "weight": 1}]
   },
   {
