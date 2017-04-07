@@ -1,0 +1,4 @@
+V0.0.1 - Apr. 06, 2017
+- Just started working on it and built a simple if/elif flow for generating a response to predeterimined input.
+V0.1.0 - Apr. 07, 2017
+- Made all conversation data reside in external JSON files, and include easy templating of response via inline {var_name} tags.
