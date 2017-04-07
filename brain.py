@@ -4,9 +4,15 @@ configFile = open('config.json')
 raw_data = configFile.read()
 data = json.loads(raw_data)
 
+# Append all conversation response around distributed conversation files
+# This allows one to "plug-in" new responses and have them centralized together
+convo = []
 convoFile = open('convo.json')
 raw_data = convoFile.read()
-convo = json.loads(raw_data)
+convo += json.loads(raw_data)
+otroFile = open('otro.json')
+raw_data = otroFile.read()
+convo += json.loads(raw_data)
 
 def get_response(input):
     for i in convo:
