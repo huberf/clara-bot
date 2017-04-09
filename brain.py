@@ -1,4 +1,5 @@
 from random import randint
+from os import scandir
 import json
 configFile = open('config.json')
 raw_data = configFile.read()
@@ -7,12 +8,12 @@ data = json.loads(raw_data)
 # Append all conversation response around distributed conversation files
 # This allows one to "plug-in" new responses and have them centralized together
 convo = []
-convoFile = open('convos/convo.json')
-raw_data = convoFile.read()
-convo += json.loads(raw_data)
-otroFile = open('convos/otro.json')
-raw_data = otroFile.read()
-convo += json.loads(raw_data)
+convoFiles = scandir(path='convos/')
+for i in convoFiles:
+    if i.name.endswith('.json'):
+        convoFile = open('convos/' + i.name)
+        raw_data = convoFile.read()
+        convo += json.loads(raw_data)
 
 def get_response(input):
     for i in convo:
@@ -22,10 +23,12 @@ def get_response(input):
                 return response.format(
                         user_name=data['user']['name'],
                         name=data['name'],
-                        response_count=len(convo)
+                        response_count=len(convo),
+                        user_hobby=data['user']['hobby']
                         )
 
 if __name__ == "__main__":
+    logFile = open('log.txt', 'a')
     print("Booting...")
     print("{} online.".format(data['name']))
     statement = ""
@@ -36,3 +39,9 @@ if __name__ == "__main__":
         statement = statement.strip('!')
         response = get_response(statement.lower())
         print(response)
+        ender = '\n'
+        logFile.write('S: ' + statement + ender)
+        if not response == None:
+            logFile.write('R: ' + response + ender)
+        else:
+            logFile.write('R: None' + ender)
