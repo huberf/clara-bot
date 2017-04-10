@@ -1,5 +1,5 @@
 from random import randint
-from os import scandir
+from os import listdir
 import json
 configFile = open('config.json')
 raw_data = configFile.read()
@@ -8,10 +8,10 @@ data = json.loads(raw_data)
 # Append all conversation response around distributed conversation files
 # This allows one to "plug-in" new responses and have them centralized together
 convo = []
-convoFiles = scandir(path='convos/')
+convoFiles = listdir(path='convos/')
 for i in convoFiles:
-    if i.name.endswith('.json'):
-        convoFile = open('convos/' + i.name)
+    if i.endswith('.json'):
+        convoFile = open('convos/' + i)
         raw_data = convoFile.read()
         convo += json.loads(raw_data)
 
