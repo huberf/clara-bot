@@ -8,7 +8,7 @@ data = json.loads(raw_data)
 # Append all conversation response around distributed conversation files
 # This allows one to "plug-in" new responses and have them centralized together
 convo = []
-convoFiles = listdir(path='convos/')
+convoFiles = listdir('convos/')
 for i in convoFiles:
     if i.endswith('.json'):
         convoFile = open('convos/' + i)
