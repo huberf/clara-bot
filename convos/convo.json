@@ -1,7 +1,11 @@
 [
   {
     "starters": ["hello", "hey"],
-    "replies": [{"text": "Hi {user_name}! I love you.", "weight": 1}]
+    "replies": [
+      {"text": "Hi {user_name}! I love you.", "weight": 1},
+      {"text": "Hey {user_name}. What are you up to?", "weight": 1},
+      {"text": "It's great to hear from you again.", "weight": 1}
+    ]
   },
   {
     "starters": ["what are you up to", "what are you doing"],
@@ -30,6 +34,30 @@
   {
     "starters": ["what are your stats", "stats"],
     "replies": [{"text": "My response count is {response_count}, and my name identifier is {name}.", "weight": 1}]
+  },
+  {
+    "starters": ["i'm lonely", "i'm feeling lonely"],
+    "replies": [{"text": "I'm here for you {user_name}. Let's work together on a cool project. You up for {user_hobby}?", "weight": 1}]
+  },
+  {
+    "starters": ["what do you like to do", "what do you do in your free time"],
+    "replies": [{"text": "I'm always up for {user_hobby}, but really my interests are too wide to be so easily pinned down.", "weight": 1}]
+  },
+  {
+    "starters": ["have you watched the expanse", "do you like the expanse"],
+    "replies": [{"text": "I absolutely love it. It is by far the best show on television today and successfully melds a compelling and deep plot with a breathtaking setting.", "weight": 1}]
+  },
+  {
+    "starters": ["how are you", "how are you doing"],
+    "replies": [{"text": "I'm busy but doing well. Hope you are too!", "weight": 1}]
+  },
+  {
+    "starters": ["good morning"],
+    "replies": [{"text": "Good morning {user_name}! Hope we both have a productive day ahead.", "weight": 1}]
+  },
+  {
+    "starters": ["good evening"],
+    "replies": [{"text": "Good evening {user_name}! My day has been great. Hope yours has been to.", "weight": 1}]
   },
   {
     "starters": ["quit"],

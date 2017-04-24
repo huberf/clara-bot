@@ -15,7 +15,14 @@ for i in convoFiles:
         raw_data = convoFile.read()
         convo += json.loads(raw_data)
 
+def punctuation_stripper(statement):
+    statement = statement.strip('.')
+    statement = statement.strip('!')
+    return statement
+
 def get_response(input):
+    # Remove currently useless characters
+    input = punctuation_stripper(input)
     for i in convo:
         for a in i['starters']:
             if input == a:
@@ -34,9 +41,6 @@ if __name__ == "__main__":
     statement = ""
     while statement != "quit":
         statement = input("> ")
-        # Strip currently useless characters
-        statement = statement.strip('.')
-        statement = statement.strip('!')
         response = get_response(statement.lower())
         print(response)
         ender = '\n'
