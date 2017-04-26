@@ -16,13 +16,19 @@ for i in convoFiles:
         convo += json.loads(raw_data)
 
 def punctuation_stripper(statement):
-    statement = statement.strip('.')
-    statement = statement.strip('!')
-    return statement
+    toRemove = ['.', '!', '?']
+    punctuate = None
+    for i in toRemove:
+        if not statement.find(i) == -1:
+            punctuate = i
+        statement = statement.strip(i)
+    return {"text": statement, "punctuation": punctuate}
 
 def get_response(input):
     # Remove currently useless characters
-    input = punctuation_stripper(input)
+    stripped = punctuation_stripper(input)
+    input = stripped["text"]
+    punctuation = stripped["punctuation"]
     for i in convo:
         for a in i['starters']:
             if input == a:
