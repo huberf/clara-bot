@@ -1,4 +1,5 @@
 from random import randint
+from Levenshtein import distance
 from os import listdir
 import json
 configFile = open('config.json')
@@ -29,16 +30,25 @@ def get_response(input):
     stripped = punctuation_stripper(input)
     input = stripped["text"]
     punctuation = stripped["punctuation"]
+    possibilities = []
     for i in convo:
         for a in i['starters']:
-            if input == a:
-                response = i['replies'][randint(0, len(i['replies']) - 1)]['text']
-                return response.format(
-                        user_name=data['user']['name'],
-                        name=data['name'],
-                        response_count=len(convo),
-                        user_hobby=data['user']['hobby']
-                        )
+            val = distance(input, a)
+            if len(input)/(val+1) > 1.5:
+                possibilities.append({'val': val, 'response': i['replies'][randint(0, len(i['replies']) - 1)]['text']})
+    min = 10000000000
+    response = 'None'
+    print(possibilities)
+    for i in possibilities:
+        if i['val'] < min:
+            response = i['response']
+            min = i['val']
+    return response.format(
+            user_name=data['user']['name'],
+            name=data['name'],
+            response_count=len(convo),
+            user_hobby=data['user']['hobby']
+                )
 
 if __name__ == "__main__":
     logFile = open('log.txt', 'a')
