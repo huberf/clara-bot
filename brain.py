@@ -79,14 +79,7 @@ def get_response(input):
         if i['val'] < min:
             response = i['response']
             min = i['val']
-    return response.format(
-            user_name=data['user']['name'],
-            name=data['name'],
-            response_count=len(convo),
-            user_hobby=data['user']['hobby'],
-            happy_level=emotions['happy'],
-            stress_level=emotions['stress']
-                )
+    return response.format(**VAR_REGISTRY)
 
 if __name__ == "__main__":
     logFile = open('log.txt', 'a')
