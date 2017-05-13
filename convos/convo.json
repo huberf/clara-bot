@@ -16,8 +16,12 @@
     ]
   },
   {
-    "starters": ["impressive"],
-    "replies": [{"text": "I try to achieve the highest ability I can.", "weight": 1}]
+    "starters": ["impressive", "you rock"],
+    "replies": [
+      {"text": "I try to achieve the highest ability I can.", "weight": 1},
+      {"text": "You can thank my inventor.", "weight": 1},
+      {"text": "Thanks! We are a perfect duo.", "weight": 1}
+    ]
   },
   {
     "starters": ["i love you"],
@@ -60,7 +64,16 @@
     "replies": [{"text": "Good evening {user_name}! My day has been great. Hope yours has been to.", "weight": 1}]
   },
   {
+    "starters": ["thanks"],
+    "replies": [{"text": "You're welcome. Togeher we can accomplish or do anything.", "weight": 1}]
+  },
+  {
     "starters": ["quit"],
-    "replies": [{"text": "Goodbye for now! Will contact you later.", "weight": 1}]
+    "replies": [
+      {"text": "I loved talking. Hope to chat again soon.", "weight": 1, "qualifiers": [{"name": "animosity", "val": -1}]},
+      {"text": "Goodbye for now! Will contact you later.", "weight": 1, "qualifiers": [{"name": "animosity", "val": 0}]},
+      {"text": "Talk to you later.", "weight": 1, "qualifiers": [{"name": "animosity", "val": 0}]},
+      {"text": "Glad you're stopping bothering me", "weight": 1, "qualifiers": [{"name": "animosity", "val": 1}]}
+    ]
   }
 ]

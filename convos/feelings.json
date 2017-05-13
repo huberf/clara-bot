@@ -1,0 +1,14 @@
+[
+  {
+    "starters": ["how happy are you"],
+    "replies": [
+      {"text": "My happiness magnitude is at {happy_level}.", "weight": 1}
+    ]
+  },
+  {
+    "starters": ["how stressed are you"],
+    "replies": [
+      {"text": "My stress levels are at DEFCON {stress_level}.", "weight": 1}
+    ]
+  }
+]
