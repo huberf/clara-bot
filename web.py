@@ -18,9 +18,9 @@ def parse_request():
     message = message.lower()
     response = brain.get_response(message)
     if not response == None:
-        return response
+        return '{"message": "' + response['message'] + '", "image": "' + response['image'] + '"}'
     else:
-        return "Sorry! I'm still learning to understanding."
+        return '{"message": "' +"Sorry! I'm still learning to understanding." + '"}'
     # Legacy Tests kept for future difficulties
     '''
     return 'JSON Message: ' + json.dumps(request.json)

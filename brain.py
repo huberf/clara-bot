@@ -65,21 +65,31 @@ def get_response(input):
                         to_test = b['qualifiers']
                         for z in to_test:
                             if VAR_REGISTRY[z['name']] == z['val']:
-                                reply_options += [b['text']]
+                                try:
+                                    reply_options += [{'text': b['text'], 'image': b['image']}]
+                                except:
+                                    reply_options += [{'text': b['text'], 'image': 'None'}]
                             else:
                                 do_nothing = True
                     except:
-                        reply_options += [b['text']]
+                        try:
+                            to_add = {'text': b['text'], 'image': b['image']}
+                        except:
+                            to_add = {'text': b['text'], 'image': 'None'}
+                        reply_options += [to_add]
                 slimmed_reply = reply_options[randint(0, len(reply_options)-1)]
-                possibilities.append({'val': val, 'response': slimmed_reply})
+                possibilities.append({'val': val, 'response': slimmed_reply['text'], 'image': slimmed_reply['image']})
     min = 10000000000
     response = 'None'
+    image = 'None'
     # print(possibilities)
     for i in possibilities:
         if i['val'] < min:
             response = i['response']
+            image = i['image']
             min = i['val']
-    return response.format(**VAR_REGISTRY)
+    toReturn = {'message': response.format(**VAR_REGISTRY), 'image': image}
+    return toReturn
 
 if __name__ == "__main__":
     logFile = open('log.txt', 'a')
@@ -89,11 +99,11 @@ if __name__ == "__main__":
     while statement != "quit":
         statement = input("> ")
         response = get_response(statement.lower())
-        print(response)
+        print(response['message'])
         ender = '\n'
         logFile.write('S: ' + statement + ender)
         if not response == None:
-            logFile.write('R: ' + response + ender)
+            logFile.write('R: ' + response['message'] + ender)
         else:
             logFile.write('R: None' + ender)
     emotionFile = open('emotions.json', 'w')
