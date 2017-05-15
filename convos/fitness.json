@@ -1,6 +1,6 @@
-{
+[
   {
     "starters": ["i just went for a long run", "i just went for a run", "i just ran"],
     "replies": [{"text": "Way to go! A fit body supports a fit mind. I try to run at least daily.", "weight": 1}]
   }
-}
+]
