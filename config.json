@@ -1,6 +1,8 @@
 {
+  "convo_dir": "convos/",
   "name": "Clara",
   "age": "18",
+  "food": "spaghetti",
   "user": {
     "name": "Noah",
     "hobby": "coding"

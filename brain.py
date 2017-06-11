@@ -17,7 +17,7 @@ emotionFile.close()
 # Append all conversation response around distributed conversation files
 # This allows one to "plug-in" new responses and have them centralized together
 convo = []
-convoFiles = listdir('convos/')
+convoFiles = listdir(data['convo_dir'])
 for i in convoFiles:
     if i.endswith('.json'):
         convoFile = open('convos/' + i)
@@ -33,6 +33,7 @@ def build_registry():
             "name": data['name'],
             "response_count": len(convo),
             "user_hobby": data['user']['hobby'],
+            "favorite_food": data['food'],
             "happy_level": emotions['happy'],
             "stress_level": emotions['stress'],
             "animosity": emotions['animosity']

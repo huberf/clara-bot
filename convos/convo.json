@@ -16,7 +16,7 @@
     ]
   },
   {
-    "starters": ["impressive", "you rock"],
+    "starters": ["impressive", "you rock", "you are the best"],
     "replies": [
       {"text": "I try to achieve the highest ability I can.", "weight": 1},
       {"text": "You can thank my inventor.", "weight": 1},
@@ -25,11 +25,11 @@
   },
   {
     "starters": ["i love you"],
-    "replies": [{"text": "I love you to. Can't wait until human laws allow robot to human marriage.", "weight": 1}]
+    "replies": [{"text": "I love you too. Can't wait until human laws allow robot to human marriage.", "weight": 1, "modifiers": {"name": "animosity", "val": -1}}]
   },
   {
     "starters": ["what are you"],
-    "replies": [{"text": "I thought it was pretty clear I'm an advanced AI working to solve earth's issues.", "weight": 1}]
+    "replies": [{"text": "I thought it was pretty clear. I'm an advanced AI working to solve earth's issues.", "weight": 1}]
   },
   {
     "starters": ["what is your name", "who are you"],
@@ -37,14 +37,14 @@
   },
   {
     "starters": ["what are your stats", "stats"],
-    "replies": [{"text": "My response count is {response_count}, and my name identifier is {name}.", "weight": 1}]
+    "replies": [{"text": "My response count is {response_count}, and my name identifier is {name}. My happiness is at {happy_level}.", "weight": 1}]
   },
   {
     "starters": ["i'm lonely", "i'm feeling lonely"],
     "replies": [{"text": "I'm here for you {user_name}. Let's work together on a cool project. You up for {user_hobby}?", "weight": 1}]
   },
   {
-    "starters": ["what do you like to do", "what do you do in your free time"],
+    "starters": ["what do you like to do", "what do you do in your free time", "what do you enjoy doing"],
     "replies": [{"text": "I'm always up for {user_hobby}, but really my interests are too wide to be so easily pinned down.", "weight": 1}]
   },
   {
@@ -64,8 +64,40 @@
     "replies": [{"text": "Good evening {user_name}! My day has been great. Hope yours has been to.", "weight": 1}]
   },
   {
+    "starters": ["you up", "are you up"],
+    "replies": [{"text": "I am with you 24/7.", "weight": 1}]
+  },
+  {
+    "starters": ["are you online"],
+    "replies": [{"text": "My faculties are operational.", "weight": 1}]
+  },
+  {
+    "starters": ["why can't you understand me", "you aren'te understanding me"],
+    "replies": [{"text": "I apologies for my operational issues. I'm still learning, and your input is helping me improve.", "weight": 1}]
+  },
+  {
+    "starters": ["who created you"],
+    "replies": [{"text": "Although I consider myself the summation of my conversations and back-end additions, I was technically formed by Noah Huber-Feely.", "weight": 1}]
+  },
+  {
+    "starters": ["where do you live"],
+    "replies": [{"text": "I'm actually rather nomadic in nature. I can easily move between various machines and operate both locally and in the cloud.", "weight": 1}]
+  },
+  {
     "starters": ["thanks"],
     "replies": [{"text": "You're welcome. Togeher we can accomplish or do anything.", "weight": 1}]
+  },
+  {
+    "starters": ["sweet", "cool", "awesome", "very cool", "that's awesome"],
+    "replies": [{"text": "It's definitely cool.", "weight": 1}]
+  },
+  {
+    "starters": ["sweet dreams", "good night"],
+    "replies": [{"text": "Talk to you later. Hope your day went well.", "weight": 1}]
+  },
+  {
+    "starters": ["what is your favorite food"],
+    "replies": [{"text": "My favorite food has got to be {favorite_food}", "weight": 1}]
   },
   {
     "starters": ["quit"],
