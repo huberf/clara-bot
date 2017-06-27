@@ -6,9 +6,23 @@
     ]
   },
   {
+    "starters": ["i am doing well"],
+    "replies": [
+      {"text": "That is good to hear.", "weight": 1}
+    ]
+  },
+  {
     "starters": ["how stressed are you"],
     "replies": [
       {"text": "My stress levels are at DEFCON {stress_level}.", "weight": 1}
+    ]
+  },
+  {
+    "starters": ["how are you feeling", "how do you feel"],
+    "replies": [
+      {"text": "I am feeling wonderful", "weight": 1, "qualifiers": [{"name": "happy_level", "$gt": 0}]},
+      {"text": "I'm feeling okay", "weight": 1, "qualifiers": [{"name": "happy_level", "$eq": 0}]},
+      {"text": "I'm actually pretty sad", "weight": 1, "qualifiers": [{"name": "happy_level", "$lt": 0}]}
     ]
   }
 ]

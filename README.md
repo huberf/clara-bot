@@ -44,6 +44,41 @@ and it will properly work with it.
 Link to checkout [the Clara Mobile
 client](https://github.com/huberf/clara-mobile)
 
+## Convo File Formats
+All json files from the `convos/` directory are automatically loaded at startup.
+Therefore, you break your convo files into an infinite number of individual
+convo files. All such files contain an array of objects with the following keys:
+* `starters` - This is an array of possible things a user could say to initiate
+  the responses mentioned directly below this.
+* `replies` - This is an array of possible replies which are selected at random
+  based upon the `weight` key for each reply value. Replies can also be reserved
+  for only certain states such as a happiness level greater than 0. To use this
+  functionality one need only include the `qualifiers` key which is an array of
+  objects with the keys `name` and then either `{"$lt": 0}`, `{"$gt": 0}`, or
+  `{"$eq": 0}` except with 0 being whatever value you wish the response to
+  activate at against the less than, greater than, or equal to operators.
+Here is an example JSON response file:
+```
+[
+  {
+    "starters": ["this is a test", "i am testing you"],
+    "replies": [
+      {"text": "Hello very happy world!", "weight": 1, "modifiers": 
+        [
+          {"name": "happy_level", "$gt": 2}
+        ]
+      },
+      {"text": "Hello world!", "weight": 1, "modifiers": 
+        [
+          {"name": "happy_level", "$eq": 2},
+          {"name": "happy_level", "$lt": 2}
+        ]
+      }
+    ]
+  }
+]
+```
+
 ## Contributing
 
 Feel free to open an issue if you have an idea or feature request. To contribute
