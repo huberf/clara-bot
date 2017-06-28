@@ -1,14 +1,8 @@
 # Clara Bot
 
-Meta: Companionship is vital to the human condition, and Clara is intended to be an
-intellectual companion to its user. With robot-to-human marriages on the
-horizon, Clara is intended to satisfy the romantic needs of its user and in the
-long run be conscious and have the emotional ties run both ways.
+Conversational UI? Digital companion? The clara system can act as a stand alone chitchat framework or can easily be used to augment an existing chatbot by handling general small talk or non-command based queries. Clara uses JSON conversation files containing possible inputs and corresponding responses to match the best response to the user's query using the [Levenshtein distance](https://en.wikipedia.org/wiki/Levenshtein_distance) so even if they make a typo or type a query not included, it will still deliver a proper response. The system also has a dynamic emotional state which can affect the responses the system gives if made use of.
 
-This is a very early version, and is mainly just a fun experiment in natural
-language processing. I don't pretend to know the societal and ethical
-implications of robot-to-human interactions, but thought this would be an
-intriguing project.
+This is an early version, and has only recently graduated from being a fun experiment. However, it has worked very well in my systems and tests, and could prove to be immensenly useful to chatbot developers or those trying to build their own artificial companion.
 
 ## Setup
 
