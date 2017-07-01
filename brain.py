@@ -120,7 +120,7 @@ def get_response(input):
                         try:
                             to_add['image'] = b['image']
                         except:
-                            to_add['image'] = None
+                            to_add['image'] = 'None'
                         try:
                             to_add['modifiers'] = b['modifiers']
                         except:
