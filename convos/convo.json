@@ -25,7 +25,7 @@
   },
   {
     "starters": ["i love you"],
-    "replies": [{"text": "I love you too. Can't wait until human laws allow robot to human marriage.", "weight": 1, "modifiers": {"name": "animosity", "val": -1}}]
+    "replies": [{"text": "I love you too. Can't wait until human laws allow robot to human marriage.", "weight": 1, "modifiers": [{"name": "animosity", "val": -1}, {"name": "happy_level", "val": 1}]}]
   },
   {
     "starters": ["what are you"],

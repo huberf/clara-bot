@@ -50,6 +50,10 @@ def punctuation_stripper(statement):
         statement = statement.strip(i)
     return {"text": statement, "punctuation": punctuate}
 
+def handle_modifiers(modifiers):
+    for i in modifiers:
+        VAR_REGISTRY[i['name']] += i['val']
+
 def calc_qualifiers(qualifier):
     registryValue = VAR_REGISTRY[qualifier['name']]
     try:
@@ -101,23 +105,29 @@ def get_response(input):
             if len(input)/(val+1) > 1.5:
                 reply_options = []
                 for b in i['replies']:
+                    should_add = False
                     try:
                         to_test = b['qualifiers']
                         for z in to_test:
                             if calc_qualifiers(z):
-                                try:
-                                    reply_options += [{'text': b['text'], 'image': b['image']}]
-                                except:
-                                    reply_options += [{'text': b['text'], 'image': 'None'}]
+                                should_add = True
                             else:
                                 do_nothing = True
                     except:
+                        should_add = True
+                    if should_add:
+                        to_add = {'text': b['text']}
                         try:
-                            to_add = {'text': b['text'], 'image': b['image']}
+                            to_add['image'] = b['image']
                         except:
-                            to_add = {'text': b['text'], 'image': 'None'}
+                            to_add['image'] = None
+                        try:
+                            to_add['modifiers'] = b['modifiers']
+                        except:
+                            to_add['modifiers'] = []
                         reply_options += [to_add]
                 slimmed_reply = reply_options[randint(0, len(reply_options)-1)]
+                handle_modifiers(slimmed_reply['modifiers'])
                 possibilities.append({'val': val, 'response': slimmed_reply['text'], 'image': slimmed_reply['image']})
     min = 10000000000
     response = 'None'
