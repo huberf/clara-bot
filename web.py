@@ -22,8 +22,11 @@ def log(text, response):
 
 @app.route("/converse", methods=['POST'])
 def parse_request():
-    text = json.dumps(request.json)
-    message = request.json["input"]
+    try:
+        text = json.dumps(request.json)
+        message = request.json['input']
+    except:
+        message = request.form['input']
     message = message.lower()
     response = brain.get_response(message)
     # Logging i/o
@@ -36,15 +39,6 @@ def parse_request():
        return to_return
     else:
         return '{"message": "' + "Sorry! I'm still learning to understanding." + '"}'
-    # Legacy Tests kept for future difficulties
-    '''
-    return 'JSON Message: ' + json.dumps(request.json)
-    return request.args['input']
-    starter = request.json
-    return json.dumps(starter)
-    message = starter['input']
-    return 'Hey: ' + brain.get_response(message)
-    '''
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 2525))
