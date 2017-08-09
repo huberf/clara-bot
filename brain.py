@@ -23,6 +23,20 @@ for i in convoFiles:
         convoFile = open('convos/' + i)
         raw_data = convoFile.read()
         convo += json.loads(raw_data)
+    elif i.endswith('.convo'):
+        # Process the loose file format
+        convoFile = open('convos/' + i)
+        raw_data = convoFile.read()
+        formatted = raw_data.split('Q: ')
+        for a in formatted:
+            if len(a) > 0:
+                actual_data = a.split('\nR: ')
+                # Strip all newlines
+                actual_data[1] = actual_data[1].replace('\n', '')
+                convo += [{
+                    'starters': [actual_data[0]],
+                    'replies': [{'text': actual_data[1], 'weight': 1}]
+                    }]
 
 # Var Setup
 VAR_REGISTRY = {}
