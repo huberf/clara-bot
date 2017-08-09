@@ -2,6 +2,8 @@ from random import randint
 from Levenshtein import distance
 from os import listdir
 import json
+# Import interface for basic convo file
+from utils import convo_reader
 
 # Config load
 configFile = open('config.json')
@@ -27,16 +29,7 @@ for i in convoFiles:
         # Process the loose file format
         convoFile = open('convos/' + i)
         raw_data = convoFile.read()
-        formatted = raw_data.split('Q: ')
-        for a in formatted:
-            if len(a) > 0:
-                actual_data = a.split('\nR: ')
-                # Strip all newlines
-                actual_data[1] = actual_data[1].replace('\n', '')
-                convo += [{
-                    'starters': [actual_data[0]],
-                    'replies': [{'text': actual_data[1], 'weight': 1}]
-                    }]
+        convo += convo_reader.convert_to_json(raw_data)
 
 # Var Setup
 VAR_REGISTRY = {}

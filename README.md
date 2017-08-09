@@ -76,14 +76,14 @@ A new simplified format in development is signified with the `.convo` suffix. It
 uses newlines combined with a letter, colon and space to divide up the data.
 Ex:
 ```
-Q: Who are you?
+Q: Who are you?; What are you?; Tell me what you are.
 R: I am an artificial intelligence bot.
 Q: I enjoy programming.
-R: Wow! I do too!
+R: Wow! I do too!; Programming is the best thing in the world.
 ```
 It is much easier to add to than the JSON, but with a much more limited feature
 set and doesn't include the ability to add conditional responses requiring
-certain moods or multiple replies.
+certain moods or modifying data inside the "brain".
 Therefore, this convo format is meant for quickly adding new conversation info
 that isn't expected to be commonly used. It is also planned to be used in future
 machine learning response generation, where Clara could consume and process the
