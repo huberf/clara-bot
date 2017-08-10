@@ -158,7 +158,7 @@ if __name__ == "__main__":
         response = get_response(statement.lower())
         print(response['message'])
         ender = '\n'
-        logFile.write('S: ' + statement + ender)
+        logFile.write('Q: ' + statement + ender)
         if not response == None:
             logFile.write('R: ' + response['message'] + ender)
         else:
