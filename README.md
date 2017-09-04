@@ -104,6 +104,9 @@ Q: I have to go now. Bye!
 As this is still in development, the format will continue to update and morph,
 and the JSON is still planned to be the main format for scripted responses.
 
+## Live Demo
+A privately hosted Clara instance can be talked to and its convo log can be expanded by chatting via FB Messenger at [m.me/clarachatbot](https://m.me/clarachatbot).
+
 ## Contributing
 
 Feel free to open an issue if you have an idea or feature request. To contribute
