@@ -4,6 +4,7 @@ from os import listdir
 import json
 # Import interface for basic convo file
 from utils import convo_reader
+from message_statistics import MessageStats
 
 # Config load
 configFile = open('config.json')
@@ -150,6 +151,8 @@ def get_response(input):
 
 if __name__ == "__main__":
     logFile = open('log.txt', 'a')
+    secureLogger = MessageStats("secure_log.json")
+    secureLogger.load_log()
     print("Booting...")
     print("{} online.".format(data['name']))
     statement = ""
@@ -157,6 +160,7 @@ if __name__ == "__main__":
         statement = input("> ")
         response = get_response(statement.lower())
         print(response['message'])
+        secureLogger.log_occurence(response['message'])
         ender = '\n'
         logFile.write('Q: ' + statement + ender)
         if not response == None:
@@ -166,3 +170,4 @@ if __name__ == "__main__":
     emotionFile = open('emotions.json', 'w')
     emotionFile.write(json.dumps(emotions))
     emotionFile.close()
+    secureLogger.save_log()
