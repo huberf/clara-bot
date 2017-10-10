@@ -1,4 +1,5 @@
 from random import randint
+import random
 from Levenshtein import distance
 from os import listdir
 import json
@@ -100,6 +101,15 @@ def calc_qualifiers(qualifier):
     # if supplied info doesn't fit any of the above qualifier types reject
     return False
 
+# Pick a random option from supplied reply list using weights
+def random_pick_weighted(reply_options):
+    weights = list(map(lambda e: e['weight'], reply_options))
+    indexes = list(range(0, len(reply_options)))
+    # Generates a list with a single entry containing a value randomly picked with proper weight
+    choices_list = random.choices(indexes, weights=weights, k=1)
+    picked_index = choices_list[0]
+    slimmed_reply = reply_options[picked_index]
+    return slimmed_reply
 
 def get_response(input):
     # Remove currently useless characters
@@ -133,10 +143,14 @@ def get_response(input):
                             to_add['modifiers'] = b['modifiers']
                         except:
                             to_add['modifiers'] = []
+                        try:
+                            to_add['weight'] = b['weight']
+                        except:
+                            to_add['weight'] = 1
                         reply_options += [to_add]
-                slimmed_reply = reply_options[randint(0, len(reply_options)-1)]
+                slimmed_reply = random_pick_weighted(reply_options)
                 handle_modifiers(slimmed_reply['modifiers'])
-                possibilities.append({'val': val, 'response': slimmed_reply['text'], 'image': slimmed_reply['image']})
+                possibilities.append({'val': val, 'response': slimmed_reply['text'], 'image': slimmed_reply['image'], 'weight': slimmed_reply['weight']})
     min = 10000000000
     response = 'None'
     image = 'None'

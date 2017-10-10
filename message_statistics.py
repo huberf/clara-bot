@@ -19,7 +19,6 @@ class MessageStats:
             self.log[key_hash] += 1
         except:
             self.log.update({key_hash: 1})
-        print(self.log)
 
     def retrieve_occurences(self, message):
         key_hash = self.generate_message_hash(message)

@@ -3,7 +3,7 @@
     "starters": ["hello", "hey"],
     "replies": [
       {"text": "Hi {user_name}! I love you.", "weight": 1},
-      {"text": "Hey {user_name}. What are you up to?", "weight": 1},
+      {"text": "Hey {user_name}. What are you up to?", "weight": 1.5},
       {"text": "It's great to hear from you again.", "weight": 1}
     ]
   },
