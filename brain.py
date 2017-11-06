@@ -6,6 +6,7 @@ import json
 # Import interface for basic convo file
 from utils import convo_reader
 from message_statistics import MessageStats
+from utils import sentiment
 
 # Config load
 configFile = open('config.json')
@@ -112,6 +113,7 @@ def random_pick_weighted(reply_options):
     return slimmed_reply
 
 def get_response(input):
+    sentimentValues = sentiment.assess(input)
     # Remove currently useless characters
     stripped = punctuation_stripper(input)
     input = stripped["text"]
