@@ -83,7 +83,7 @@ def calc_qualifiers(qualifier):
         # Not an equal to qualifier
         doNothing = True
     try:
-        if regsitryValue < qualifier['$lt']:
+        if registryValue < qualifier['$lt']:
             return True
         else:
             return False
