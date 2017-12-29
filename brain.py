@@ -174,6 +174,10 @@ def threaded_input():
         if len(input_queue) == 0:
             input_queue.append(iograb.get());
 
+ticker = 0
+def event_check():
+    ticker += 1
+
 if __name__ == "__main__":
     logFile = open('log.txt', 'a')
     secureLogger = MessageStats("secure_log.json")
@@ -184,6 +188,7 @@ if __name__ == "__main__":
     ioThread.start()
     terminated = False
     while not terminated:
+        event_check()
         if len(input_queue) > 0:
             statement = input_queue[0]
             del input_queue[0]
@@ -199,7 +204,6 @@ if __name__ == "__main__":
             if statement == "quit":
                 terminated = True
         sleep(0.1)
-    ioThread.stop()
     emotionFile = open('emotions.json', 'w')
     emotionFile.write(json.dumps(emotions))
     emotionFile.close()
