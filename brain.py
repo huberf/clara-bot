@@ -3,10 +3,13 @@ import random
 from Levenshtein import distance
 from os import listdir
 import json
+from threading import Thread
+from time import sleep
 # Import interface for basic convo file
 from utils import convo_reader
 from message_statistics import MessageStats
 from utils import sentiment
+from utils import iograb
 
 # Config load
 configFile = open('config.json')
@@ -165,24 +168,38 @@ def get_response(input):
     toReturn = {'message': response.format(**VAR_REGISTRY), 'image': image}
     return toReturn
 
+input_queue = []
+def threaded_input():
+    while True:
+        if len(input_queue) == 0:
+            input_queue.append(iograb.get());
+
 if __name__ == "__main__":
     logFile = open('log.txt', 'a')
     secureLogger = MessageStats("secure_log.json")
     secureLogger.load_log()
     print("Booting...")
+    ioThread = Thread(target = threaded_input)
     print("{} online.".format(data['name']))
-    statement = ""
-    while statement != "quit":
-        statement = input("> ")
-        response = get_response(statement.lower())
-        print(response['message'])
-        secureLogger.log_occurence(response['message'])
-        ender = '\n'
-        logFile.write('Q: ' + statement + ender)
-        if not response == None:
-            logFile.write('R: ' + response['message'] + ender)
-        else:
-            logFile.write('R: None' + ender)
+    ioThread.start()
+    terminated = False
+    while not terminated:
+        if len(input_queue) > 0:
+            statement = input_queue[0]
+            del input_queue[0]
+            response = get_response(statement.lower())
+            print(response['message'])
+            secureLogger.log_occurence(response['message'])
+            ender = '\n'
+            logFile.write('Q: ' + statement + ender)
+            if not response == None:
+                logFile.write('R: ' + response['message'] + ender)
+            else:
+                logFile.write('R: None' + ender)
+            if statement == "quit":
+                terminated = True
+        sleep(0.1)
+    ioThread.stop()
     emotionFile = open('emotions.json', 'w')
     emotionFile.write(json.dumps(emotions))
     emotionFile.close()
