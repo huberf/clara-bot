@@ -191,9 +191,24 @@ def threaded_input():
             input_queue.append(iograb.get());
 
 ticker = 0
+events = json.load(open('events.json'))
+for i in range(len(events)):
+    metric = events[i]['metric']
+    val = VAR_REGISTRY[metric]
+    events[i]['last'] = val
 def event_check():
     global ticker
     ticker += 1
+    for i in range(len(events)):
+        metric = events[i]['metric']
+        val = VAR_REGISTRY[metric]
+        if events[i]['type'] == '$gt':
+            if val > events[i]['level'] and events[i]['last'] < val:
+                iograb.put(events[i]['response'])
+        elif events[i]['type'] == '$lt':
+            if val < events[i]['level'] and events[i]['last'] > val:
+                iograb.put(events[i]['response'])
+        events[i]['last'] = val
 
 if __name__ == "__main__":
     logFile = open('log.txt', 'a')

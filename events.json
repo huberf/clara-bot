@@ -1,0 +1,4 @@
+[
+  { "metric": "happiness", "level": 2, "type": "$gt", "response": "I'm really quite happy right now." },
+  { "metric": "anger", "level": 3, "type": "$gt", "response": "FYI, I'm really angry right now." }
+]
