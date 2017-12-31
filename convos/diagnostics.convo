@@ -1,0 +1,6 @@
+Q: Response count
+R: I have {response_count} response.
+Q: Happiness level
+R: My happiness level is {happy}
+Q: Disgust level
+R: My disgust level is {disgust}
