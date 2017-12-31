@@ -1,0 +1,8 @@
+[
+  { "name": "happiness", "val": 0},
+  { "name": "sadness", "val": 0},
+  { "name": "fear", "val": 0},
+  { "name": "anger", "val": 0},
+  { "name": "surprise", "val": 0},
+  { "name": "disgust", "val": 0}
+]
