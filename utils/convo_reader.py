@@ -14,7 +14,17 @@ def convert_to_json(raw):
             replies = []
             for i in actual_data[1].split('; '):
                 data = i.split('|')
-                to_add = {'text': data[0], 'weight': 1}
+                refined = data[0].split('\\')
+                modifiers = []
+                try:
+                    mods = refined[1].split('.')
+                    for z in mods:
+                        parts = mods.split('=')
+                        modifiers += [ {'name': parts[0], 'val': int(parts[1])} ]
+                except:
+                    doNothing = True
+                to_add = {'text': refined[0], 'weight': 1}
+                to_add['modifiers'] = modifiers
                 try:
                     converted = json.loads(data[1])
                     try:
