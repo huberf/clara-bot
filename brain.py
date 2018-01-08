@@ -12,6 +12,10 @@ from message_statistics import MessageStats
 from utils import sentiment
 from utils import iograb
 
+# Setup global objects
+myIO = iograb.ClaraIO()
+#myIO = iograb.WebIO()
+
 # Config load
 configFile = open('config.json')
 raw_data = configFile.read()
@@ -188,7 +192,7 @@ input_queue = []
 def threaded_input():
     while True:
         if len(input_queue) == 0:
-            input_queue.append(iograb.get());
+            input_queue.append(myIO.get());
 
 ticker = 0
 events = json.load(open('events.json'))
@@ -204,19 +208,19 @@ def event_check():
         val = VAR_REGISTRY[metric]
         if events[i]['type'] == '$gt':
             if val > events[i]['level'] and events[i]['last'] < val:
-                iograb.put(events[i]['response'])
+                myIO.put(events[i]['response'])
         elif events[i]['type'] == '$lt':
             if val < events[i]['level'] and events[i]['last'] > val:
-                iograb.put(events[i]['response'])
+                myIO.put(events[i]['response'])
         events[i]['last'] = val
 
 if __name__ == "__main__":
     logFile = open('log.txt', 'a')
     secureLogger = MessageStats("secure_log.json")
     secureLogger.load_log()
-    iograb.put("Booting...")
+    myIO.put("Booting...")
     ioThread = Thread(target = threaded_input)
-    iograb.put("{} online.".format(data['name']))
+    myIO.put("{} online.".format(data['name']))
     ioThread.start()
     terminated = False
     while not terminated:
@@ -225,7 +229,7 @@ if __name__ == "__main__":
             statement = input_queue[0]
             del input_queue[0]
             response = get_response(statement.lower())
-            iograb.put(response['message'])
+            myIO.put(response['message'])
             secureLogger.log_occurence(response['message'])
             ender = '\n'
             logFile.write('Q: ' + statement + ender)
