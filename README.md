@@ -1,10 +1,22 @@
 # Clara Bot
 
+This project has moved to [clara-pip](https://github.com/huberf/clara-pip).
+
 Conversational UI? Digital companion? The clara system can act as a stand alone chitchat framework or can easily be used to augment an existing chatbot by handling general small talk or non-command based queries. Clara uses JSON conversation files containing possible inputs and corresponding responses to match the best response to the user's query using the [Levenshtein distance](https://en.wikipedia.org/wiki/Levenshtein_distance) so even if they make a typo or type a query not included, it will still deliver a proper response. The system also has a dynamic emotional state which can affect the responses the system gives if made use of.
 
 This is an early version, and has only recently graduated from being a fun experiment. However, it has worked very well in my systems and tests, and could prove to be immensenly useful to chatbot developers or those trying to build their own artificial companion.
 
-## Setup
+## Setup (Easy)
+
+1. Run `pip install clara`
+2. Create a script containing the below code.
+```
+from clara import brain
+brain.run()
+```
+3. In the same directory, run `clara setup`.
+
+## Setup (Technical)
 
 1. Run `git clone https://github.com/huberf/clara-bot`
 2. Now `cd` into the `clara-bot` directory.
